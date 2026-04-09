@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>巴菲特致股东信知识库</title>
+<style>
+:root {
+    --bg: #faf7f2;
+    --bg-card: #ffffff;
+    --bg-hover: #f5f0e8;
+    --text: #2c1810;
+    --text-muted: #8b7355;
+    --text-light: #b8a48c;
+    --accent: #c4841d;
+    --accent-light: #f0dfc0;
+    --border: #e8dcc8;
+    --shadow: 0 1px 3px rgba(44,24,16,0.06);
+    --shadow-lg: 0 4px 12px rgba(44,24,16,0.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: Georgia, "Noto Serif SC", "Source Han Serif CN", serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* Top nav */
+.nav { background: var(--bg-card); border-bottom: 2px solid var(--accent); padding: 0 24px; display: flex; align-items: center; height: 56px; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); }
+.nav-brand { font-size: 18px; font-weight: 700; color: var(--accent); cursor: pointer; white-space: nowrap; letter-spacing: 1px; }
+.nav-links { display: flex; gap: 4px; margin-left: 32px; flex-wrap: wrap; }
+.nav-link { padding: 6px 14px; font-size: 13px; border-radius: 4px; cursor: pointer; color: var(--text-muted); border: none; background: none; font-family: inherit; transition: all 0.15s; }
+.nav-link:hover { color: var(--text); background: var(--bg-hover); }
+.nav-link.active { color: var(--accent); background: var(--accent-light); font-weight: 600; }
+.nav-search { margin-left: auto; position: relative; }
+.nav-search input { padding: 6px 12px 6px 30px; border: 1px solid var(--border); border-radius: 4px; font-size: 13px; background: var(--bg); color: var(--text); width: 200px; font-family: inherit; outline: none; }
+.nav-search input:focus { border-color: var(--accent); }
+.nav-search::before { content: "⌕"; position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--text-light); font-size: 14px; }
+
+/* Content */
+.content { max-width: 960px; margin: 0 auto; padding: 32px 24px; }
+
+/* Home */
+.home-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 40px; }
+.stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; text-align: center; box-shadow: var(--shadow); cursor: pointer; transition: all 0.15s; }
+.stat-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-1px); }
+.stat-card .num { font-size: 32px; font-weight: 700; color: var(--accent); }
+.stat-card .label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+.section-title { font-size: 18px; font-weight: 700; color: var(--text); margin: 32px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); display: flex; align-items: baseline; gap: 8px; }
+.section-title .badge { font-size: 12px; font-weight: 400; color: var(--text-muted); }
+
+/* Entity pills / tags */
+.entity-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.entity-tag { display: inline-flex; align-items: center; gap: 4px; padding: 6px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; font-size: 14px; cursor: pointer; transition: all 0.15s; color: var(--text); text-decoration: none; }
+.entity-tag:hover { border-color: var(--accent); background: var(--accent-light); }
+.entity-tag .count { font-size: 11px; color: var(--text-muted); }
+.entity-tag.highlight { border-color: var(--accent); background: var(--accent-light); font-weight: 600; }
+
+/* Type colors */
+.type-person { border-left: 3px solid #5b7fa5; }
+.type-organization { border-left: 3px solid #8b6da5; }
+.type-concept { border-left: 3px solid #5a8f5a; }
+.type-event { border-left: 3px solid #c4841d; }
+.type-location { border-left: 3px solid #5aafa5; }
+
+/* Letter list */
+.letter-group { margin-bottom: 24px; }
+.letter-group-title { font-size: 14px; font-weight: 600; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+.letter-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
+.letter-item { padding: 10px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; transition: all 0.15s; font-size: 14px; box-shadow: var(--shadow); display: flex; justify-content: space-between; align-items: center; }
+.letter-item:hover { border-color: var(--accent); box-shadow: var(--shadow-lg); }
+.letter-item .year { font-weight: 700; color: var(--accent); margin-right: 8px; }
+.letter-item .title { flex: 1; color: var(--text); }
+.letter-item .entity-count { font-size: 11px; color: var(--text-light); white-space: nowrap; }
+
+/* Entity detail page */
+.detail-header { margin-bottom: 24px; }
+.detail-name { font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.detail-type { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 12px; color: var(--text-muted); background: var(--accent-light); }
+.detail-meta { margin-top: 8px; font-size: 13px; color: var(--text-muted); }
+
+.related-section { margin-top: 24px; }
+.related-title { font-size: 16px; font-weight: 600; margin-bottom: 12px; color: var(--text); padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+
+.related-letters { display: flex; flex-direction: column; gap: 6px; }
+.rel-letter { padding: 10px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; transition: all 0.15s; font-size: 14px; box-shadow: var(--shadow); }
+.rel-letter:hover { border-color: var(--accent); }
+.rel-letter .year { font-weight: 700; color: var(--accent); margin-right: 8px; }
+
+.related-entities { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+
+/* Letter detail */
+.letter-detail-title { font-size: 24px; font-weight: 700; margin-bottom: 16px; }
+.letter-entities { margin-top: 24px; }
+.letter-entities h3 { font-size: 16px; margin-bottom: 12px; color: var(--text); }
+
+/* Back link */
+.back-link { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; color: var(--text-muted); cursor: pointer; margin-bottom: 16px; padding: 4px 0; }
+.back-link:hover { color: var(--accent); }
+
+/* Letter content */
+.letter-content {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 32px;
+    margin-top: 16px;
+    line-height: 1.9;
+    font-size: 15px;
+    box-shadow: var(--shadow);
+    max-height: 60vh;
+    overflow-y: auto;
+}
+.letter-content h2 { font-size: 18px; margin: 24px 0 12px; color: var(--accent); }
+.letter-content h3 { font-size: 16px; margin: 20px 0 10px; color: var(--text); }
+.letter-content h4 { font-size: 15px; margin: 16px 0 8px; color: var(--text); }
+.letter-content p { margin-bottom: 12px; }
+.letter-content strong { color: var(--text); }
+.letter-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 13px;
+}
+.letter-content th {
+    background: var(--accent-light);
+    font-weight: 600;
+    text-align: left;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+}
+.letter-content td {
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+}
+.letter-content tr:nth-child(even) td {
+    background: var(--bg);
+}
+
+/* Empty state */
+.empty { text-align: center; padding: 48px; color: var(--text-light); font-size: 15px; }
+
+/* Responsive */
+@media (max-width: 640px) {
+    .nav { padding: 0 12px; flex-wrap: wrap; height: auto; padding: 10px 12px; gap: 8px; }
+    .nav-links { margin-left: 0; }
+    .nav-search { margin-left: 0; width: 100%; }
+    .nav-search input { width: 100%; }
+    .content { padding: 16px 12px; }
+    .home-stats { grid-template-columns: repeat(2, 1fr); }
+    .letter-list { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+    <div class="nav-brand" onclick="go('home')">巴菲特知识库</div>
+    <div class="nav-links" id="navLinks">
+        <button class="nav-link active" data-page="home">首页</button>
+        <button class="nav-link" data-page="concepts">概念</button>
+        <button class="nav-link" data-page="companies">公司</button>
+        <button class="nav-link" data-page="people">人物</button>
+        <button class="nav-link" data-page="letters">信件</button>
+    </div>
+    <div class="nav-search">
+        <input type="text" id="search" placeholder="搜索..." autocomplete="off">
+    </div>
+</div>
+
+<div class="content" id="app"></div>
+
+<script>
+let D = null;
+let currentPage = 'home';
+let currentId = null;
+
+async function init() {
+    D = await (await fetch('site_data.json')).json();
+    // 索引
+    D.letterMap = {};
+    D.letters.forEach(l => D.letterMap[l.id] = l);
+    D.entityMap = {};
+    D.entities.forEach(e => D.entityMap[e.id] = e);
+    // nav
+    document.querySelectorAll('.nav-link').forEach(btn => {
+        btn.onclick = () => go(btn.dataset.page);
+    });
+    document.getElementById('search').oninput = onSearch;
+    // hash routing
+    window.onhashchange = route;
+    route();
+}
+
+function route() {
+    const h = location.hash.slice(1);
+    if (!h || h === 'home') go('home');
+    else if (h === 'concepts') go('concepts');
+    else if (h === 'companies') go('companies');
+    else if (h === 'people') go('people');
+    else if (h === 'letters') go('letters');
+    else if (h.startsWith('entity/')) go('entity', parseInt(h.split('/')[1]));
+    else if (h.startsWith('letter/')) go('letter', parseInt(h.split('/')[1]));
+}
+
+function go(page, id) {
+    currentPage = page;
+    currentId = id;
+    location.hash = id !== undefined ? `${page}/${id}` : page;
+    // update nav active
+    const navPage = ['home','concepts','companies','people','letters'].includes(page) ? page : null;
+    document.querySelectorAll('.nav-link').forEach(b => b.classList.toggle('active', b.dataset.page === navPage));
+    render();
+    window.scrollTo(0, 0);
+}
+
+function render() {
+    const app = document.getElementById('app');
+    switch (currentPage) {
+        case 'home': app.innerHTML = renderHome(); break;
+        case 'concepts': app.innerHTML = renderEntityList('concept', '概念索引'); break;
+        case 'companies': app.innerHTML = renderEntityList('organization', '公司索引'); break;
+        case 'people': app.innerHTML = renderEntityList('person', '人物索引'); break;
+        case 'letters': app.innerHTML = renderLetters(); break;
+        case 'entity': app.innerHTML = renderEntityDetail(currentId); break;
+        case 'letter': app.innerHTML = renderLetterDetail(currentId); break;
+        case 'search': app.innerHTML = renderSearch(); break;
+    }
+}
+
+// ========== Home ==========
+function renderHome() {
+    const m = D.meta;
+    const topConcepts = D.entities.filter(e => e.type === 'concept').slice(0, 20);
+    const topOrgs = D.entities.filter(e => e.type === 'organization').slice(0, 15);
+    const topPeople = D.entities.filter(e => e.type === 'person').slice(0, 10);
+
+    return `
+    <div class="home-stats">
+        <div class="stat-card" onclick="go('letters')"><div class="num">${m.total_letters}</div><div class="label">篇信件（${m.year_range}）</div></div>
+        <div class="stat-card" onclick="go('concepts')"><div class="num">${m.entity_types['概念'] || 0}</div><div class="label">个投资概念</div></div>
+        <div class="stat-card" onclick="go('companies')"><div class="num">${m.entity_types['公司'] || 0}</div><div class="label">家公司</div></div>
+        <div class="stat-card" onclick="go('people')"><div class="num">${m.entity_types['人物'] || 0}</div><div class="label">位人物</div></div>
+    </div>
+
+    <div class="section-title">核心投资概念 <span class="badge">按出现频率排序</span></div>
+    <div class="entity-grid">${topConcepts.map(e => entityTag(e)).join('')}</div>
+
+    <div class="section-title">重要公司</div>
+    <div class="entity-grid">${topOrgs.map(e => entityTag(e)).join('')}</div>
+
+    <div class="section-title">关键人物</div>
+    <div class="entity-grid">${topPeople.map(e => entityTag(e)).join('')}</div>
+    `;
+}
+
+function entityTag(e) {
+    return `<span class="entity-tag" onclick="go('entity',${e.id})">${esc(e.name)} <span class="count">${e.letter_count}</span></span>`;
+}
+
+// ========== Entity List ==========
+function renderEntityList(type, title) {
+    const entities = D.entities.filter(e => e.type === type);
+    const typeName = {concept:'概念',organization:'公司',person:'人物',event:'事件',location:'地点'}[type];
+
+    // 按首字符分组（简单处理）
+    return `
+    <div class="section-title">${title} <span class="badge">${entities.length} 个${typeName}</span></div>
+    <div class="entity-grid">${entities.map(e => entityTag(e)).join('')}</div>
+    `;
+}
+
+// ========== Letters ==========
+function renderLetters() {
+    const cats = {'partnership':'合伙人信','berkshire':'伯克希尔股东信','special':'特别信件'};
+    let html = `<div class="section-title">信件总览 <span class="badge">${D.meta.total_letters} 篇</span></div>`;
+
+    for (const [cat, label] of Object.entries(cats)) {
+        const catLetters = D.letters.filter(l => l.category === cat);
+        if (!catLetters.length) continue;
+        html += `<div class="letter-group"><div class="letter-group-title">${label}（${catLetters.length}）</div><div class="letter-list">`;
+        for (const l of catLetters) {
+            html += `<div class="letter-item" onclick="go('letter',${l.id})"><span class="year">${l.year}</span><span class="title">${esc(l.title.replace(/\d{4}\s*/, ''))}</span><span class="entity-count">${l.entity_count} 个实体</span></div>`;
+        }
+        html += '</div></div>';
+    }
+    return html;
+}
+
+// ========== Entity Detail ==========
+function renderEntityDetail(id) {
+    const e = D.entityMap[id];
+    if (!e) return '<div class="empty">实体不存在</div>';
+
+    const letters = e.letter_ids.map(lid => D.letterMap[lid]).filter(Boolean);
+
+    // 相关实体
+    const related = [];
+    const seen = new Set([id]);
+    for (const r of D.relationships) {
+        if (r.source === id && !seen.has(r.target)) {
+            const t = D.entityMap[r.target];
+            if (t) { related.push({entity: t, type: r.type, dir: '→'}); seen.add(r.target); }
+        }
+        if (r.target === id && !seen.has(r.source)) {
+            const s = D.entityMap[r.source];
+            if (s) { related.push({entity: s, type: r.type, dir: '←'}); seen.add(r.source); }
+        }
+        if (related.length >= 30) break;
+    }
+
+    return `
+    <div class="back-link" onclick="history.back()">← 返回</div>
+    <div class="detail-header">
+        <div class="detail-name">${esc(e.name)}</div>
+        <span class="detail-type type-${e.type}">${e.type_zh}</span>
+        <div class="detail-meta">出现在 ${e.letter_count} 篇信件中 · ${related.length} 个关联实体</div>
+    </div>
+
+    <div class="related-section">
+        <div class="related-title">相关信件（${letters.length}）</div>
+        <div class="related-letters">
+            ${letters.map(l => `<div class="rel-letter" onclick="go('letter',${l.id})"><span class="year">${l.year}</span>${esc(l.title)}</div>`).join('')}
+        </div>
+    </div>
+
+    ${related.length > 0 ? `
+    <div class="related-section">
+        <div class="related-title">关联实体（${related.length}）</div>
+        <div class="related-entities">
+            ${related.map(r => `<span class="entity-tag" onclick="go('entity',${r.entity.id})" title="${esc(r.type)}">${r.dir} ${esc(r.entity.name)}</span>`).join('')}
+        </div>
+    </div>` : ''}
+    `;
+}
+
+// ========== Letter Detail ==========
+function renderLetterDetail(id) {
+    const l = D.letterMap[id];
+    if (!l) return '<div class="empty">信件不存在</div>';
+
+    // 按类型分组实体
+    const grouped = {};
+    for (const eid of (l.entity_ids || [])) {
+        const e = D.entityMap[eid];
+        if (!e) continue;
+        const t = e.type_zh;
+        if (!grouped[t]) grouped[t] = [];
+        grouped[t].push(e);
+    }
+    for (const t of Object.keys(grouped)) {
+        grouped[t].sort((a, b) => b.letter_count - a.letter_count);
+    }
+
+    const typeOrder = ['概念', '公司', '人物', '事件', '地点'];
+    const catNames = {'partnership':'合伙人信','berkshire':'伯克希尔股东信','special':'特别信件'};
+
+    // 渲染信件全文（简单 markdown → HTML）
+    const contentHtml = renderMarkdown(l.content || '');
+
+    return `
+    <div class="back-link" onclick="history.back()">← 返回信件列表</div>
+    <div class="letter-detail-title">${esc(l.title)}</div>
+    <div class="detail-meta">${catNames[l.category] || ''} · ${l.year}年 · ${l.entity_count} 个实体</div>
+
+    <div class="letter-content">${contentHtml}</div>
+
+    <div class="letter-entities">
+        <div class="section-title" style="margin-top:32px">本篇涉及的实体</div>
+        ${typeOrder.filter(t => grouped[t]).map(t => `
+            <div class="related-section">
+                <div class="related-title">${t}（${grouped[t].length}）</div>
+                <div class="entity-grid">${grouped[t].map(e => entityTag(e)).join('')}</div>
+            </div>
+        `).join('')}
+    </div>
+    `;
+}
+
+function renderMarkdown(text) {
+    // 去掉 markdown 链接（保留文字）
+    text = text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+
+    // 先处理表格块（在转义 HTML 之前）
+    text = text.replace(/((?:^\| .+$\n?)+)/gm, function(match) {
+        const lines = match.trim().split('\n').filter(l => l.trim());
+        if (lines.length < 2) return match;
+        // 过滤掉分隔行 (| --- | --- |)
+        const dataLines = lines.filter(l => !l.match(/^\|[\s\-:|]+\|$/));
+        if (dataLines.length === 0) return '';
+
+        let html = '<table><thead><tr>';
+        // 第一行是表头
+        const headers = parseTableRow(dataLines[0]);
+        for (const h of headers) html += '<th>' + esc(h) + '</th>';
+        html += '</tr></thead><tbody>';
+
+        // 其余行是数据
+        for (let i = 1; i < dataLines.length; i++) {
+            const cells = parseTableRow(dataLines[i]);
+            html += '<tr>';
+            for (const c of cells) html += '<td>' + esc(c) + '</td>';
+            html += '</tr>';
+        }
+        html += '</tbody></table>';
+        return html;
+    });
+
+    // 转义 HTML
+    text = esc(text);
+    // 恢复表格标签（被 esc 转义了）
+    text = text.replace(/&lt;table&gt;/g, '<table>');
+    text = text.replace(/&lt;\/table&gt;/g, '</table>');
+    text = text.replace(/&lt;thead&gt;/g, '<thead>');
+    text = text.replace(/&lt;\/thead&gt;/g, '</thead>');
+    text = text.replace(/&lt;tbody&gt;/g, '<tbody>');
+    text = text.replace(/&lt;\/tbody&gt;/g, '</tbody>');
+    text = text.replace(/&lt;tr&gt;/g, '<tr>');
+    text = text.replace(/&lt;\/tr&gt;/g, '</tr>');
+    text = text.replace(/&lt;th&gt;/g, '<th>');
+    text = text.replace(/&lt;\/th&gt;/g, '</th>');
+    text = text.replace(/&lt;td&gt;/g, '<td>');
+    text = text.replace(/&lt;\/td&gt;/g, '</td>');
+
+    // 标题
+    text = text.replace(/^### (.+)$/gm, '<h4>$1</h4>');
+    text = text.replace(/^## (.+)$/gm, '<h3>$1</h3>');
+    text = text.replace(/^# (.+)$/gm, '<h2>$1</h2>');
+    // 粗体
+    text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    // 段落：双换行 → <p>
+    text = text.replace(/\n\n+/g, '</p><p>');
+    // 单换行 → <br>
+    text = text.replace(/\n/g, '<br>');
+    return '<p>' + text + '</p>';
+}
+
+function parseTableRow(line) {
+    return line.split('|').slice(1, -1).map(c => c.trim());
+}
+
+// ========== Search ==========
+function onSearch() {
+    const q = document.getElementById('search').value.trim().toLowerCase();
+    if (q.length < 1) { if (currentPage === 'search') go('home'); return; }
+    currentPage = 'search';
+    render();
+}
+
+function renderSearch() {
+    const q = document.getElementById('search').value.trim().toLowerCase();
+    if (!q) return '';
+
+    const matchedEntities = D.entities.filter(e => e.name.toLowerCase().includes(q)).slice(0, 30);
+    const matchedLetters = D.letters.filter(l => l.title.toLowerCase().includes(q)).slice(0, 20);
+
+    let html = `<div class="section-title">搜索 "${esc(q)}"</div>`;
+
+    if (matchedEntities.length) {
+        html += `<div class="related-title">实体（${matchedEntities.length}）</div><div class="entity-grid" style="margin-bottom:24px">${matchedEntities.map(e => entityTag(e)).join('')}</div>`;
+    }
+    if (matchedLetters.length) {
+        html += `<div class="related-title">信件（${matchedLetters.length}）</div><div class="related-letters">${matchedLetters.map(l => `<div class="rel-letter" onclick="go('letter',${l.id})"><span class="year">${l.year}</span>${esc(l.title)}</div>`).join('')}</div>`;
+    }
+    if (!matchedEntities.length && !matchedLetters.length) {
+        html += '<div class="empty">没有找到匹配结果</div>';
+    }
+    return html;
+}
+
+function esc(s) {
+    if (!s) return '';
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+init();
+</script>
+</body>
+</html>
