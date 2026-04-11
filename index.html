@@ -75,6 +75,7 @@ body { font-family: Georgia, "Noto Serif SC", "Source Han Serif CN", serif; back
 .detail-name { font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
 .detail-type { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 12px; color: var(--text-muted); background: var(--accent-light); }
 .detail-meta { margin-top: 8px; font-size: 13px; color: var(--text-muted); }
+.detail-desc { margin-top: 12px; font-size: 14px; color: var(--text); line-height: 1.7; padding: 12px 16px; background: var(--bg); border-radius: 6px; border-left: 3px solid var(--accent); }
 
 .related-section { margin-top: 24px; }
 .related-title { font-size: 16px; font-weight: 600; margin-bottom: 12px; color: var(--text); padding-bottom: 6px; border-bottom: 1px solid var(--border); }
@@ -312,6 +313,7 @@ function renderEntityDetail(id) {
         <div class="detail-name">${esc(e.name)}</div>
         <span class="detail-type type-${e.type}">${e.type_zh}</span>
         <div class="detail-meta">出现在 ${e.letter_count} 篇信件中 · ${related.length} 个关联实体</div>
+        ${e.description ? `<div class="detail-desc">${esc(e.description)}</div>` : ''}
     </div>
 
     <div class="related-section">
