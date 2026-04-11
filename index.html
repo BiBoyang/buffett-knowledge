@@ -425,6 +425,8 @@ function renderMarkdown(text) {
     text = text.replace(/^# (.+)$/gm, '<h2>$1</h2>');
     // 粗体
     text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    // 斜体
+    text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
     // 段落：双换行 → <p>
     text = text.replace(/\n\n+/g, '</p><p>');
     // 单换行 → <br>
