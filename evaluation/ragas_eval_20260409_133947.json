@@ -1,0 +1,9 @@
+{
+  "timestamp": "20260409_133947",
+  "test_questions": 12,
+  "levels": {
+    "Level 3: LightRAG (hybrid)": {
+      "error": "'EvaluationResult' object has no attribute 'items'"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "timestamp": "20260409_135035",
+  "test_questions": 12,
+  "levels": {
+    "Level 3: LightRAG (hybrid)": {
+      "error": "dictionary update sequence element #0 has length 4; 2 is required"
+    }
+  }
+}

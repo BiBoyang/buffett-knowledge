@@ -1,0 +1,99 @@
+{
+  "timestamp": "20260409_135843",
+  "test_questions": 12,
+  "levels": {
+    "Level 3: LightRAG (hybrid)": {
+      "avg_scores": {
+        "faithfulness": "N/A (DeepSeek API 兼容性问题)",
+        "answer_relevancy": "N/A (DeepSeek API 兼容性问题)",
+        "context_precision": 0.9167,
+        "context_recall": 0.6458
+      },
+      "per_question": [
+        {
+          "faithfulness": "N/A (DeepSeek API 兼容性问题)",
+          "answer_relevancy": "N/A (DeepSeek API 兼容性问题)",
+          "context_precision": 1.0,
+          "context_recall": 0.5
+        },
+        {
+          "faithfulness": 0.4,
+          "answer_relevancy": "N/A (DeepSeek API 兼容性问题)",
+          "context_precision": 1.0,
+          "context_recall": 0.0
+        },
+        {
+          "faithfulness": "N/A (DeepSeek API 兼容性问题)",
+          "answer_relevancy": "N/A (DeepSeek API 兼容性问题)",
+          "context_precision": 1.0,
+          "context_recall": 1.0
+        },
+        {
+          "faithfulness": "N/A (DeepSeek API 兼容性问题)",
+          "answer_relevancy": "N/A (DeepSeek API 兼容性问题)",
+          "context_precision": 1.0,
+          "context_recall": 0.75
+        },
+        {
+          "faithfulness": "N/A (DeepSeek API 兼容性问题)",
+          "answer_relevancy": "N/A (DeepSeek API 兼容性问题)",
+          "context_precision": 1.0,
+          "context_recall": 0.5
+        },
+        {
+          "faithfulness": 0.4286,
+          "answer_relevancy": "N/A (DeepSeek API 兼容性问题)",
+          "context_precision": 0.0,
+          "context_recall": 0.0
+        },
+        {
+          "faithfulness": 0.6512,
+          "answer_relevancy": "N/A (DeepSeek API 兼容性问题)",
+          "context_precision": 1.0,
+          "context_recall": 1.0
+        },
+        {
+          "faithfulness": "N/A (DeepSeek API 兼容性问题)",
+          "answer_relevancy": "N/A (DeepSeek API 兼容性问题)",
+          "context_precision": 1.0,
+          "context_recall": 1.0
+        },
+        {
+          "faithfulness": 0.5882,
+          "answer_relevancy": "N/A (DeepSeek API 兼容性问题)",
+          "context_precision": 1.0,
+          "context_recall": 1.0
+        },
+        {
+          "faithfulness": 0.7292,
+          "answer_relevancy": "N/A (DeepSeek API 兼容性问题)",
+          "context_precision": 1.0,
+          "context_recall": 0.6667
+        },
+        {
+          "faithfulness": 0.7708,
+          "answer_relevancy": "N/A (DeepSeek API 兼容性问题)",
+          "context_precision": 1.0,
+          "context_recall": 0.6667
+        },
+        {
+          "faithfulness": 0.9091,
+          "answer_relevancy": "N/A (DeepSeek API 兼容性问题)",
+          "context_precision": 1.0,
+          "context_recall": 0.6667
+        }
+      ]
+    }
+  },
+  "notes": {
+    "context_precision": "0.9167 — 检索精度优秀，大部分检索结果与问题高度相关",
+    "context_recall": "0.6458 — 召回率中等，约65%的标准答案信息被检索到",
+    "faithfulness": "6/12有效，平均~0.64 — 有效分数范围0.40-0.91，部分因API兼容性未能计算",
+    "answer_relevancy": "全部N/A — Ragas需要n=3生成多个回复，DeepSeek不支持n>1",
+    "api_issues": [
+      "DeepSeek不支持response_format(GPTKeywordExtractionFormat) — 已通过拦截keyword_extraction参数修复",
+      "DeepSeek不支持n>1 — 影响answer_relevancy指标",
+      "部分Ragas内部调用绕过自定义base_url，发到OpenAI导致401错误"
+    ]
+  }
+}

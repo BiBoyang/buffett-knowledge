@@ -1,0 +1,17 @@
+# 密钥
+.env
+
+# Python 环境
+venv/
+__pycache__/
+*.pyc
+
+# 生成的大文件 / 缓存
+chroma_db/
+lightrag_workspace/
+lightrag_workspace_backup/
+bm25_cache.json
+*.log
+
+# macOS
+.DS_Store

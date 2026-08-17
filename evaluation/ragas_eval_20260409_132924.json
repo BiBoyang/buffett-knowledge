@@ -1,0 +1,9 @@
+{
+  "timestamp": "20260409_132924",
+  "test_questions": 12,
+  "levels": {
+    "Level 3: LightRAG (hybrid)": {
+      "error": "The metric [faithfulness] that is used requires the following additional columns ['response'] to be present in the dataset."
+    }
+  }
+}
