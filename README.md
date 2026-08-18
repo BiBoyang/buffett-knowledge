@@ -35,7 +35,10 @@ cp .env.example .env   # 然后填入 DEEPSEEK_API_KEY
 ├── rag_lightrag.py / rag_common.py / insert_one.py
 │                                       # L3：LightRAG 知识图谱
 ├── ragas_eval.py                       # Ragas 评测（L2/L3 对比，结果存 evaluation/）
-├── export_graph.py / export_site.py    # 从 lightrag_workspace/ 导出图谱数据与静态网站（website/）
+├── export_graph.py / export_site.py    # 从 lightrag_workspace/ 导出图谱数据与静态网站（仓库根目录）
+├── index.html / graph_data.json / site_data.json
+│                                       # 图谱可视化站点，GitHub Pages 直接部署根目录
+│                                       # （线上地址 https://biboyang.github.io/buffett-knowledge/）
 ├── translations.py                     # 网站展示用的英文实体名 → 中文映射
 ├── chroma_db/                          # L1/L2 的向量库
 ├── bm25_cache.json                     # L2 的 BM25 分词缓存（带数据指纹，源文档或分块参数变化会自动重建）

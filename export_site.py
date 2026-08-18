@@ -15,7 +15,7 @@ from openai import OpenAI
 from translations import ENTITY_ZH
 
 WS = Path("./lightrag_workspace")
-OUT = Path("./website")
+OUT = Path(".")  # 输出到仓库根目录（GitHub Pages 直接部署根目录）
 DESC_CACHE = Path("./desc_translations.json")
 
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
