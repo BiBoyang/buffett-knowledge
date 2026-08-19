@@ -11,8 +11,12 @@ import networkx as nx
 from pathlib import Path
 from collections import Counter, defaultdict
 from openai import OpenAI
+from dotenv import load_dotenv
 
 from translations import ENTITY_ZH
+
+# 显式从脚本所在目录加载 .env，换目录运行时也能读到 API key
+load_dotenv(Path(__file__).parent / ".env")
 
 WS = Path("./lightrag_workspace")
 OUT = Path(".")  # 输出到仓库根目录（GitHub Pages 直接部署根目录）
